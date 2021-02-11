@@ -25,6 +25,8 @@ const searchValue = async (name) => {
 const searchSong = () => {
     const inputValue = document.getElementById("searchBox").value;
     searchValue(inputValue);
+    const  makeEmpty = document.getElementById("singleLyrics");
+    makeEmpty.innerText = "";
 }
 
 const showMusic = (data) => {
@@ -54,7 +56,7 @@ const showMusic = (data) => {
 }
 
 const getLyrics = async (artist, title) => {
-    const url = `https://api.lyrics.ovh/v1/${artist}/${title}`
+    const url = `http://api.lyrics.ovh/v1/${artist}/${title}`
     try{
         const res = await fetch(url);
         const data = await res.json();
@@ -64,8 +66,9 @@ const getLyrics = async (artist, title) => {
 
     }
     catch(error){
-        const errorMessage = document.getElementById('error');
-        errorMessage.innerText = "Please try search with different name";
+        const errorMessage = document.getElementById('eroor');
+        errorMessage.innerText = "This Music lyrics is not available";
+        errorMessage.style.display = "block";
     }
   
 
